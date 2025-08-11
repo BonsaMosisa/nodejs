@@ -1,0 +1,34 @@
+const express = require("express");
+//initialize express
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello from Express");
+});
+
+app.get("/about", (req, res) => {
+  res.send("About us page");
+});
+
+app.get("/contact", function (req, res) {
+  res.send("contact page");
+});
+
+app.get("/register", (req, res) => {
+  res.send("registration page");
+});
+app.post("/register", (req, res) => {
+  res.send("registration page");
+});
+
+app.get("/product/search", (req, res) => {
+  res.send("Query String demo");
+});
+app.get("/product/:id", (res, req) => {
+  console.log(req.param);
+});
+//Start the server
+app.listen(3000, () => {
+  console.log("server is running on http://localhost:3000");
+});
