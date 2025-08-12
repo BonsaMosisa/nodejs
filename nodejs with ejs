@@ -1,0 +1,36 @@
+const express = require("express");
+const path = require("path");
+const { title } = require("process");
+const app = express();
+
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+//! Middlewares
+
+app.use(express.static("public"));
+
+//!routes
+app.get("/", (req, res) => {
+  res.render("home.ejs");
+});
+
+app.get("/variables", (req, res) => {
+  res.render("variables", {
+    title: "EJS Variables V2",
+    user: {
+      name: "Bonsa",
+      age: 21,
+      email: "bonsa@gmail.com",
+      isActive: true,
+    },
+  });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about.ejs");
+});
+//start the server
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, console.log("server is running...PORT..."));
